@@ -1,4 +1,6 @@
-# 2023_HCI
-HCI team project
+# 2023_HCI team project
 
-주제: sport
+## 주제: sport
+
+## 내용
+- 
