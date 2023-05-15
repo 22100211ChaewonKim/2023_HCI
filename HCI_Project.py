@@ -97,6 +97,50 @@ def instructions():
         instructions_screen.blit(back_button_img, back_button_rect)
         #instructions_screen.blit(instructions_object, back_button_rect)
         pygame.display.update()  
+        
+def game_finish():
+    finish_screen = pygame.display.set_mode((pad_width,pad_height))
+    
+    pygame.font.init() #폰트 초기화
+    
+    restart_button_img = pygame.image.load('restart_button.png')
+    restart_button_img = pygame.transform.scale(restart_button_img, (120,50))
+    exit_game_button = pygame.image.load('exit_game_button.png')
+    exit_game_button = pygame.transform.scale(exit_game_button, (120,50))
+
+    game_over_img = pygame.image.load('game_over.png')
+    game_over_img = pygame.transform.scale(game_over_img, (170,170))
+
+    #restart_button 위치 지정
+    restart_button_rect = restart_button_img.get_rect()
+    restart_button_rect.center = (pad_width/2, 320)
+    
+    #instructions_button 위치 지정
+    exit_game_button_rect = exit_game_button.get_rect()
+    exit_game_button.center = (pad_width/2, 400)
+
+    game_over_img_rect = game_over_img.get_rect()
+    game_over_img_rect.center = (pad_width/2, 120)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                pygame.sys.exit()
+            #만약 event type이 내가 마우스 버튼을 누른거라면
+            if event.type == MOUSEBUTTONDOWN:
+                if restart_button_rect.collidepoint(event.pos):
+                    return game_start
+                elif exit_game_button_rect.collidepoint(event.pos):
+                    return quit
+            
+        #finish screen에 검은색 바탕 칠하기
+        finish_screen.fill((255,255,255)) 
+        #글자 나타내기: finish_button_img를 finish_button_rect에 
+        finish_screen.blit(restart_button_img, restart_button_rect)
+        finish_screen.blit(exit_game_button, exit_game_button_rect)
+        
+        pygame.display.update() 
 
 def scheduling() :
     global isTrue
